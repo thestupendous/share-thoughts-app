@@ -1,0 +1,71 @@
+auth:
+  signup - get and add login credentials to db/secrets
+  login - save login credentials in db - array of [uid,pass]
+  save credentials and use using secrets
+
+users:
+   save profiles
+        followers - array of [uid]
+        following - array of [uid]
+        posts - list of posts under different users
+          comments - list of comments under different posts
+          likes - array of users who've liked the post
+
+
+feed:
+   for a user, list of all the posts by people they follow,
+   this needs to be updated every time user follows or unfollows a user.
+   their own posts will  also be there
+
+uid=user id
+pid = post id
+cid = comment id
+database:
+   person
+   {
+     uid: {
+       name:
+       gender:
+       age:
+     }
+   }
+
+   Posts
+   {
+     uid: {
+       pid:
+       {
+         content:
+         likesCount:
+         likedBy: []
+         active:
+       }
+     }
+   }
+
+  Comments
+  {
+    pid:
+    {
+      cid:
+      {
+        commentoruid:
+        postuid:
+        content:
+        active:
+      }
+    }
+  }
+
+  followers
+  {
+    uid: []
+  }
+
+  following
+  {
+    uid: []
+  }
+
+
+UI
