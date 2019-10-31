@@ -3,8 +3,46 @@
     <head>
         <title>user feed page  </title>
     </head>
-    <body bgcolor='blue'>
+    <body bgcolor='sky blue'>
         <h2> This is the user's feeds page<br></h2>
-        <h3> displaying what it got the word is [{{ word }}]</h3>>
+        <div id='post-feed'>
+            <form action='feed/post' method='post'>
+                <input type="text" placeholder="what's on your mind today..." name='status' /><br>
+                <input type="hidden" name='uid' value='{{ uid }}'> 
+                <input type='submit' value='post'>
+            </form>
+        </div><br><br>
+
+        <div id='feeds'>
+            {% for post_i in feed_data %}
+            <div id='post'>
+                <table border='2px'>
+                        <tr>
+                            <td> here goes creator's name </td>
+                        </tr>
+                        <tr>
+                            <td> here goes whole content of post</td>
+                        </tr>
+                        <tr>
+                            <td>likes: likecount </td>
+                        </tr>
+                        <tr></tr>
+                    </table>
+            </div>
+            <div id='comment'>
+                <table border='1px'>
+                    <tr>
+                        <td>
+                            here goes name of commentor
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            here goes the comment
+                        </td>
+                    </tr>
+                </table> <br>
+            </div>
+        </div>
     </body>
 </html>

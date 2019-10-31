@@ -48,7 +48,7 @@ database:
        }
      }
    }
-
+   
    Posts-only
    {
    pid:
@@ -60,6 +60,11 @@ database:
          active:
        }
      }
+   }
+
+   feed
+   {
+     uid: [pids1,pids2,...]
    }
 
   Comments
