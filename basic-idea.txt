@@ -1,9 +1,18 @@
 auth:
-  signup - get and add login credentials to db/secrets
-  login - save login credentials in db - array of [uid,pass]
-  save credentials and use using secrets
+  login - get credentials from user matches with those in db 
+    - if no, reloads with error
+    - if yes, launches feed
+  signup - gets new credentials from user and stores them in db, then reloads
+
+feed:
+   for a user, list of all the posts by people they follow,
+   this needs to be updated every time user follows or unfollows a user.
+   their own posts will  also be there
 
 users:
+   display currently-logged-in-user's profile data, posts,
+   comments on other users' posts, liked posts. people they're
+   following, their followers, and an option to edit these properties.
    save profiles
         followers - array of [uid]
         following - array of [uid]
@@ -12,14 +21,11 @@ users:
           likes - array of users who've liked the post
 
 
-feed:
-   for a user, list of all the posts by people they follow,
-   this needs to be updated every time user follows or unfollows a user.
-   their own posts will  also be there
 
-uid=user id
+uid = user id
 pid = post id
 cid = comment id
+
 database:
    person
    {
@@ -35,6 +41,19 @@ database:
      uid: {
        pid:
        {
+         content:
+         likesCount:
+         likedBy: []
+         active:
+       }
+     }
+   }
+
+   Posts-only
+   {
+   pid:
+       {
+         uid:
          content:
          likesCount:
          likedBy: []
@@ -59,13 +78,20 @@ database:
 
   followers
   {
-    uid: []
+    uid: [uid1,uid2,...]
   }
 
   following
   {
-    uid: []
+    uid: [uid1,uid2,...]
   }
 
+  liked
+  {
+    uid: [pids1,pids2,...]
+  }
 
-UI
+  Commented   #posts on which user commented
+  {
+    uid: [[pids1,cid1],[pids2,cid2],...]
+  }
