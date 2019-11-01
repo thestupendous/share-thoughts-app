@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: expose-test
+spec:
+  selector:
+    name: using-secret-pod
+  ports:
+  - port: 934
+    nodePort: 31001
+    targetPort: 27017
+  type: NodePort
