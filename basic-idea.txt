@@ -100,3 +100,10 @@ database:
   {
     uid: [[pids1,cid1],[pids2,cid2],...]
   }
+
+  misc
+  {
+    "last_uid": int,
+    "last_comment_id": int,
+    "last_post_id": int
+  }
