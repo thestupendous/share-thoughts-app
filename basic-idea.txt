@@ -41,15 +41,14 @@ database:
 
    Posts
    {
-     "u_id" : ...
-      "data": {
-       {
+     "_id": ... ,
+     "u_id" : ... ,
+     "data":
+     {
          "content": "...",
-         "likesCount": <int>
-         "likedBy": [ uid1, uid2, ...]
-         "active":
-         
-       }
+         "likesCount": <int> ,
+         "likedBy": [ uid1, uid2, ...] ,
+         "active": <bool>
      }
    }
    
@@ -60,8 +59,9 @@ database:
     "post_id": ...,
     "data": [
       {
-        "commentor_u_id": ...,
-
+        "commentor_u_id": ... ,
+        "content": "..." ,
+        "active": <bool>
       }
     ]
   }
