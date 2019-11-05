@@ -1,15 +1,19 @@
 import os
 #from pymongo import MongoClient
+import requests
 from flask import Flask, render_template, request, redirect, url_for
 from pymongo import MongoClient
 #mongo_host = os.environ.get('MONGOHOST','localhost')
 #client = MongoClient(mongo_host,'27017')
 
 app = Flask(__name__)
-@app.route('/')
+@app.route('/',methods=['GET','POST'])
 def delete_route():
-    uid=1
-    return redirect(url_for('base',uid=uid))
+    #authenticate
+    #load feed
+    abc={"a":324}
+    requests.put("http://localhost:5010/",json=abc)
+    return 'done!'
 
 @app.route('/feed/post',methods=['GET','POST'])
 def post_status(uid):
@@ -34,5 +38,5 @@ def base(uid=None):
     return render_template('feed.html',feed_data=data,uid=uid)
 
 if __name__ == '__main__':
-    app.run(debug=True,port='5020')
+    app.run(debug=True,port='5030')
   

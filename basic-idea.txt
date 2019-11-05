@@ -29,67 +29,44 @@ cid = comment id
 database:
    person
    {
-     uid: {
-       name:
-       gender:
-       age:
+      "_id": ... ,
+      "data": {
+       "name": ... ,
+       "gender": ... ,
+       "age": ...
+       "followers": []
+       "folling": []
      }
    }
 
    Posts
    {
-     uid: {
-       pid:
+     "u_id" : ...
+      "data": {
        {
-         content:
-         likesCount:
-         likedBy: []
-         active:
+         "content": "...",
+         "likesCount": <int>
+         "likedBy": [ uid1, uid2, ...]
+         "active":
+         
        }
      }
    }
    
-   Posts-only
-   {
-   pid:
-       {
-         uid:
-         content:
-         likesCount:
-         likedBy: []
-         active:
-       }
-     }
-   }
-
-   feed
-   {
-     uid: [pids1,pids2,...]
-   }
 
   Comments
   {
-    pid:
-    {
-      cid:
+    "_id": ...,
+    "post_id": ...,
+    "data": [
       {
-        commentoruid:
-        postuid:
-        content:
-        active:
+        "commentor_u_id": ...,
+
       }
-    }
+    ]
   }
 
-  followers
-  {
-    uid: [uid1,uid2,...]
-  }
 
-  following
-  {
-    uid: [uid1,uid2,...]
-  }
 
   liked
   {

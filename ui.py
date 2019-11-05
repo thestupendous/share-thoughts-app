@@ -1,21 +1,39 @@
 import os
+#from pymongo import MongoClient
+from flask import Flask, render_template, request, redirect, url_for
 from pymongo import MongoClient
-from flask import Flask, render_template
-mongo_host = os.environ.get('MONGOHOST','localhost')
-client = MongoClient(mongo_host,27017)
+#mongo_host = os.environ.get('MONGOHOST','localhost')
+#client = MongoClient(mongo_host,'27017')
 
 app = Flask(__name__)
+@app.route('/')
+def delete_route():
+    #authenticate
+    #load feed
+    request.post("192.168.10.20:3492")
 
-@app.route('/',methods=['GET','POST'])
-def base():
-    # call auth()
+@app.route('/feed/post',methods=['GET','POST','PUT','PATCH','DELETE'])
+def post_status(uid):
+    uid = request.form['uid']
+    status = request.form['status']
+    #needs to have userId
+    print('\n\n','uid and status ',uid,status,sep='  ',end='\n\n')
+    return redirect('/feed')
 
-    # if not auth() return error, load again
+    # -- make db call to update posts collection to add new entry for 
+    #    corresponding uid and suitable post
 
-    # if auth() ,
-    #   call feed()
-    return render_template('index.html')
+@app.route('/feed',methods=['GET','POST'])
+def base(uid=None):
+    # expecting userid as post request
+    client = MongoClient('localhost:27017')
+    data = []
+    dbs = client.share ; col = dbs.posts
+    for rows in col.find():
+       data.append(rows)
+       #print('',data,'',sep='\n\n')
+    return render_template('feed.html',feed_data=data,uid=uid)
 
 if __name__ == '__main__':
-    app.run(debug=True,port='5010')
+    app.run(debug=True,port='5020')
   

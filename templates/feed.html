@@ -18,7 +18,7 @@
             <div id='post'>
                 <table border='2px'>
                         <tr>
-                            <td> here goes creator's name </td>
+                            <td> here goes creator's name {{ post_i }}</td>
                         </tr>
                         <tr>
                             <td> here goes whole content of post</td>
@@ -29,6 +29,7 @@
                         <tr></tr>
                     </table>
             </div>
+            
             <div id='comment'>
                 <table border='1px'>
                     <tr>
@@ -43,6 +44,7 @@
                     </tr>
                 </table> <br>
             </div>
+            {% endfor %}
         </div>
     </body>
 </html>
