@@ -39,6 +39,16 @@ database:
      }
    }
 
+   auths
+   {
+     "username": ... ,
+     "data":
+     {
+      "uid": ... ,
+      "password": ...
+     }
+   }
+   
    Posts
    {
      "_id": ... ,
