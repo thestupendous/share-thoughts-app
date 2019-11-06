@@ -13,7 +13,7 @@ db_host = os.environ.get('DBHOST','localhost')
 
 @app.route('/',methods=['GET','POST','PUT','PATCH','DELETE'])
 def auth():
-    print('----> request ',request.json)
+    print('inside auth/\n----> request ',request.json)
     user = request.json['username']
     password = request.json['password']
     cli = MongoClient('0.0.0.0:27017')
@@ -26,6 +26,7 @@ def auth():
             #return i['data']['uid']
             a={'uid':str(i['data']['uid'])}
             requests.post('http://0.0.0.0:5001/authres',json=a)
+            a=str(a)
             return '%s'%a
     print('user not found')
     requests.post('http://0.0.0.0:5001/authfail',json=a)
