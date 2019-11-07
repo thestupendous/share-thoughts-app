@@ -5,6 +5,11 @@
     </head>
     <body>
         <div>
+            {% if failed %}
+            <p> authorisation failed please enter correct credentials! </p>
+            {% endif %}
+        </div>
+        <div>
         
             <form action="http://0.0.0.0:5001/reqdata" method="POST">
                 <input type='text' name='username' placeholder='username'> <br>

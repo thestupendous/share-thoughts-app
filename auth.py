@@ -1,7 +1,7 @@
 import os
 from pymongo import MongoClient
 from flask import Flask, render_template, request, redirect
-import requests
+import requests,json
 app = Flask(__name__)
 
 ui_host = os.environ.get('UIHOST','localhost')
@@ -19,18 +19,18 @@ def auth():
     cli = MongoClient('0.0.0.0:27017')
     dbs = cli.share
     coll = dbs.auths
-    a = {'uid':'None'}
+    a = {'uid':'None','failed':True}
     for i in coll.find({'username':user}):
         if password == i['data']['password']:
             print("password matched")
             #return i['data']['uid']
-            a={'uid':str(i['data']['uid'])}
-            requests.post('http://0.0.0.0:5001/authres',json=a)
-            a=str(a)
+            a={'uid':str(i['data']['uid']),'failed':False}
+            #requests.post('http://0.0.0.0:5001/authres',json=a)
+            a=json.dumps(a)
             return '%s'%a
     print('user not found')
-    requests.post('http://0.0.0.0:5001/authfail',json=a)
-    return 'incorrect password'
+    #requests.post('http://0.0.0.0:5001/authfail',json=a)
+    return str(json.dumps(a))
 
 
 if __name__ == '__main__':
